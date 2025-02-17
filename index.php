@@ -4,213 +4,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Store</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<style>
-    /* General Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Navbar Styles */
-.navbar {
-    background-color: #131921; /* Dark Amazon-like background */
-    color: white;
-    padding: 15px 0;
-}
-
-.navbar-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.logo img {
-    height: 40px; /* Adjust the size of your logo */
-    width: auto;
-}
-
-.search-bar {
-    display: flex;
-    width: 40%;
-}
-
-.search-bar input {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 5px 0 0 5px;
-}
-
-.search-bar button {
-    padding: 11px;
-    background-color: #febd69; /* Search button color */
-    border: none;
-    border-radius: 0 5px 5px 0;
-    cursor: pointer;
-}
-
-.search-bar input:focus, .search-bar button:focus {
-    outline: none;
-}
-
-.navbar-links {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.navbar-links a {
-    color: white;
-    text-decoration: none;
-    font-size: 14px;
-    padding: 0 10px;
-}
-
-.navbar-links a:hover {
-    background-color: #555;
-    border-radius: 3px;
-}
-
-.cart-icon {
-    display: flex;
-    align-items: center;
-    position: relative;
-}
-
-.cart-icon img {
-    width: 24px;
-    height: 24px;
-}
-
-.cart-count {
-    font-size: 12px;
-    font-weight: bold;
-    color: #ff9900; /* Cart count color */
-    position: absolute;
-    top: -5px;
-    right: -5px;
-    background-color: #ff9900;
-    padding: 2px 6px;
-    border-radius: 50%;
-}
-
-/* Mobile responsiveness */
-@media (max-width: 768px) {
-    .navbar-container {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .search-bar {
-        width: 100%;
-    }
-
-    .navbar-links {
-        flex-direction: column;
-        gap: 10px;
-        align-items: flex-start;
-    }
-}
-
-</style>
-<body>
-
-<!-- Navbar Section -->
-<nav class="navbar">
-    <div class="navbar-container">
-        <!-- Logo -->
-        <div class="logo">
-            <a href="index.php">
-                <img src="assets/images/logo.png" alt="Online Store Logo">
-            </a>
-        </div>
-
-        <!-- Search Bar -->
-        <div class="search-bar">
-            <input type="text" placeholder="Search for products, brands and more" />
-            <button>Search</button>
-        </div>
-
-        <!-- Navbar Links -->
-        <div class="navbar-links">
-            <a href="index.php">Home</a>
-            <a href="categories.php">Categories</a>
-            <a href="about.php">About</a>
-            <a href="contact.php">Contact</a>
-
-            <?php if (isset($_SESSION['username'])): ?>
-                <a href="profile.php">Hello, <?php echo $_SESSION['username']; ?></a>
-                <a href="logout.php">Logout</a>
-            <?php else: ?>
-                <a href="login.php">Login</a>
-                <a href="register.php">Register</a>
-            <?php endif; ?>
-            <a href="cart.php" class="cart-icon">
-                <img src="assets/images/cart-icon.png" alt="Cart">
-                <span class="cart-count">
-                    <?php
-                    if (isset($_SESSION['user_id'])) {
-                        $user_id = $_SESSION['user_id'];
-                        // Fetch the total number of items in the cart
-                        $sql = "SELECT SUM(quantity) AS cart_count FROM cart WHERE user_id = '$user_id'";
-                        $result = $conn->query($sql);
-                        $cart_count = $result->fetch_assoc()['cart_count'];
-                        echo $cart_count > 0 ? $cart_count : '';
-                    }
-                    ?>
-                </span>
-            </a>
-        </div>
-    </div>
-</nav>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Online Book Store</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        /* Optional custom styles for the images */
-        .img-fluid {
+</head>
+<style> 
+ /* Optional custom styles for the images */
+ .img-fluid {
             width: 100%;
             height: auto;
         }
-    </style>
-</head>
+/* Basic styles for the navbar */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            background-color: #131921;
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            width: 100px;
+            padding-left: 20px;
+        }
+
+        .logo img {
+            width: 100%;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            max-width: 600px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .search-bar input[type="text"] {
+            width: 80%;
+            padding: 8px;
+            margin: 0;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .search-bar button {
+            padding: 8px 16px;
+            background-color: #f2a900;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-links a:hover {
+            background-color: #f2a900;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .search-bar input[type="text"] {
+                width: 70%;
+            }
+
+            .nav-links {
+                display: none; /* Hide links on mobile */
+            }
+
+            .search-bar {
+                justify-content: center;
+            }
+        }
+         /* Optional: Styling for the carousel images */
+         .carousel-item img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover; /* Keeps images proportional */
+        }
+</style>
 <body>
 
-    <!-- Container for the Online Book Store -->
-    <div class="container-fluid py-5">
-        <h2 class="text-center">Online Book Store</h2>
-        <div class="container">
-            <div class="row">
-                <!-- First Image Column -->
-                <div class="col-lg-3 col-md-3 col-sm-6 col-12 mb-4">
-                    <img src="images\img1.jpg" class="img-fluid" alt="Image 1">
-                </div>
-                <!-- Second Image Column -->
-                <div class="col-lg-3 col-md-3 col-sm-6 col-12 mb-4">
-                    <img src="images\img1.jpg" class="img-fluid" alt="Image 2">
-                </div>
-                <!-- Third Image Column -->
-                <div class="col-lg-3 col-md-3 col-sm-6 col-12 mb-4">
-                    <img src="images\img1.jpg" class="img-fluid" alt="Image 3">
-                </div>
-                <!-- Fourth Image Column -->
-                <div class="col-lg-3 col-md-3 col-sm-6 col-12 mb-4">
-                    <img src="images\img1.jpg" class="img-fluid" alt="Image 4">
-                </div>
-            </div>
+<nav>
+    <!-- Logo -->
+    <div class="logo">
+        <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon"></a>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <input type="text" placeholder="Search Amazon" name="search">
+        <button type="submit">Search</button>
+    </div>
+
+    <!-- Navbar Links -->
+    <div class="nav-links">
+        <a href="index.php">Home</a>
+        <a href="about.php">About Us</a>
+        <a href="contact.php">Contact Us</a>
+        <a href="signup.php">Signup</a>
+        <a href="login.php">Login</a>
+    </div>
+</nav>
+<body>
+
+<!-- Carousel Wrapper -->
+<div id="imageCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <!-- First Image -->
+        <div class="carousel-item active">
+            <img src="images/paul-melki-bByhWydZLW0-unsplash.jpg" class="d-block w-100" alt="Image 1">
+        </div>
+        <div class="carousel-item">
+            <img src="images/carousel1.avif" class="d-block w-100" alt="Image 3">
+        </div>
+        <!-- Second Image -->
+        <div class="carousel-item">
+            <img src="images/carousel1.avif" class="d-block w-100" alt="Image 3">
         </div>
     </div>
+
+    <!-- Carousel Controls (Prev and Next buttons) -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
 
     <div class="container-fluid py-3">
         <h2 class="text-center">Online Book Store</h2>
@@ -266,8 +209,8 @@
             <!-- Contact Section -->
             <div class="col-md-4">
                 <h5>Contact Us</h5>
-                <p>Email: support@onlinestore.com</p>
-                <p>Phone: +1 (123) 456-7890</p>
+                <p>Email: aasifmohd1385@gmail.com</p>
+                <p>Phone: +91 (875) 530-1385</p>
             </div>
         </div>
 

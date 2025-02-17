@@ -7,6 +7,92 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        /* Optional custom styles for the images */
+ .img-fluid {
+            width: 100%;
+            height: auto;
+        }
+/* Basic styles for the navbar */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            background-color: #131921;
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            width: 100px;
+            padding-left: 20px;
+        }
+
+        .logo img {
+            width: 100%;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            max-width: 600px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .search-bar input[type="text"] {
+            width: 80%;
+            padding: 8px;
+            margin: 0;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .search-bar button {
+            padding: 8px 16px;
+            background-color: #f2a900;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-links a:hover {
+            background-color: #f2a900;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .search-bar input[type="text"] {
+                width: 70%;
+            }
+
+            .nav-links {
+                display: none; /* Hide links on mobile */
+            }
+
+            .search-bar {
+                justify-content: center;
+            }
+        }
         .about-section {
             background-color: #f8f9fa;
             padding: 60px 0;
@@ -30,23 +116,27 @@
 </head>
 <body>
 
-    <!-- Navigation (Optional) -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="#">Online Book Store</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Shop</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+<nav>
+    <!-- Logo -->
+    <div class="logo">
+        <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon"></a>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <input type="text" placeholder="Search Amazon" name="search">
+        <button type="submit">Search</button>
+    </div>
+
+    <!-- Navbar Links -->
+    <div class="nav-links">
+        <a href="index.php">Home</a>
+        <a href="about.php">About Us</a>
+        <a href="contact.php">Contact Us</a>
+        <a href="index.php">Login</a>
+        <a href="index.php">Signup</a>
+    </div>
+</nav>
 
     <!-- About Us Section -->
     <div class="about-section text-center">
@@ -92,8 +182,8 @@
             <!-- Contact Section -->
             <div class="col-md-4">
                 <h5>Contact Us</h5>
-                <p>Email: support@onlinestore.com</p>
-                <p>Phone: +1 (123) 456-7890</p>
+                <p>Email: aasifmohd1385@gmail.com</p>
+                <p>Phone: +91 (875) 530 1385</p>
             </div>
         </div>
 

@@ -43,140 +43,115 @@
     .contact-info {
         margin-top: 50px;
     }
-    /* Navbar Styles */
-.navbar {
-    background-color: #131921; /* Dark Amazon-like background */
-    color: white;
-    padding: 15px 0;
-}
+    * Optional custom styles for the images */
+ .img-fluid {
+            width: 100%;
+            height: auto;
+        }
+/* Basic styles for the navbar */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
 
-.navbar-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-}
+        nav {
+            background-color: #131921;
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-.logo img {
-    height: 40px; /* Adjust the size of your logo */
-    width: auto;
-}
+        .logo {
+            width: 100px;
+            padding-left: 20px;
+        }
 
-.search-bar {
-    display: flex;
-    width: 40%;
-}
+        .logo img {
+            width: 100%;
+        }
 
-.search-bar input {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 5px 0 0 5px;
-}
+        .search-bar {
+            display: flex;
+            align-items: center;
+            max-width: 600px;
+            margin: 0 auto;
+            width: 100%;
+        }
 
-.search-bar button {
-    padding: 11px;
-    background-color: #febd69; /* Search button color */
-    border: none;
-    border-radius: 0 5px 5px 0;
-    cursor: pointer;
-}
+        .search-bar input[type="text"] {
+            width: 80%;
+            padding: 8px;
+            margin: 0;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+        }
 
-.search-bar input:focus, .search-bar button:focus {
-    outline: none;
-}
+        .search-bar button {
+            padding: 8px 16px;
+            background-color: #f2a900;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
 
-.navbar-links {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
 
-.navbar-links a {
-    color: white;
-    text-decoration: none;
-    font-size: 14px;
-    padding: 0 10px;
-}
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
 
-.navbar-links a:hover {
-    background-color: #555;
-    border-radius: 3px;
-}
+        .nav-links a:hover {
+            background-color: #f2a900;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .search-bar input[type="text"] {
+                width: 70%;
+            }
 
-.cart-icon {
-    display: flex;
-    align-items: center;
-    position: relative;
-}
+            .nav-links {
+                display: none; /* Hide links on mobile */
+            }
 
-.cart-icon img {
-    width: 24px;
-    height: 24px;
-}
-
-.cart-count {
-    font-size: 12px;
-    font-weight: bold;
-    color: #ff9900; /* Cart count color */
-    position: absolute;
-    top: -5px;
-    right: -5px;
-    background-color: #ff9900;
-    padding: 2px 6px;
-    border-radius: 50%;
-}
+            .search-bar {
+                justify-content: center;
+            }
+        }
 
 </style>
 <body>
 
-<!-- Navbar Section -->
-<nav class="navbar">
-    <div class="navbar-container">
-        <!-- Logo -->
-        <div class="logo">
-            <a href="index.php">
-                <img src="assets/images/logo.png" alt="Online Store Logo">
-            </a>
-        </div>
+<nav>
+    <!-- Logo -->
+    <div class="logo">
+        <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon"></a>
+    </div>
 
-        <!-- Search Bar -->
-        <div class="search-bar">
-            <input type="text" placeholder="Search for products, brands and more" />
-            <button>Search</button>
-        </div>
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <input type="text" placeholder="Search Amazon" name="search">
+        <button type="submit">Search</button>
+    </div>
 
-        <!-- Navbar Links -->
-        <div class="navbar-links">
-            <a href="index.php">Home</a>
-            <a href="categories.php">Categories</a>
-            <a href="about.php">About</a>
-            <a href="contact.php">Contact</a>
-
-            <?php if (isset($_SESSION['username'])): ?>
-                <a href="profile.php">Hello, <?php echo $_SESSION['username']; ?></a>
-                <a href="logout.php">Logout</a>
-            <?php else: ?>
-                <a href="login.php">Login</a>
-                <a href="register.php">Register</a>
-            <?php endif; ?>
-            <a href="cart.php" class="cart-icon">
-                <img src="assets/images/cart-icon.png" alt="Cart">
-                <span class="cart-count">
-                    <?php
-                    if (isset($_SESSION['user_id'])) {
-                        $user_id = $_SESSION['user_id'];
-                        // Fetch the total number of items in the cart
-                        $sql = "SELECT SUM(quantity) AS cart_count FROM cart WHERE user_id = '$user_id'";
-                        $result = $conn->query($sql);
-                        $cart_count = $result->fetch_assoc()['cart_count'];
-                        echo $cart_count > 0 ? $cart_count : '';
-                    }
-                    ?>
-                </span>
-            </a>
-        </div>
+    <!-- Navbar Links -->
+    <div class="nav-links">
+        <a href="index.php">Home</a>
+        <a href="about.php">About Us</a>
+        <a href="contact.php">Contact Us</a>
+        <a href="index.php">Login</a>
+        <a href="index.php">Signup</a>
     </div>
 </nav>
 
@@ -209,14 +184,14 @@
             <!-- Contact Information Column -->
             <div class="col-md-6 contact-info">
                 <h3>Our Contact Information</h3>
-                <p><strong>Email:</strong> support@onlinestore.com</p>
-                <p><strong>Phone:</strong> +1 (123) 456-7890</p>
-                <p><strong>Address:</strong> 123 Online Store St., Booktown, USA</p>
+                <p><strong>Email:</strong> aasifmohd1385@gmail.com</p>
+                <p><strong>Phone:</strong> +91 (875) 530-1385</p>
+                <p><strong>Address:</strong> Navi Mumbai,India,</p>
 
                 <h4>Follow Us:</h4>
-                <a href="#" class="btn btn-primary">Facebook</a>
-                <a href="#" class="btn btn-primary">Instagram</a>
+                <a href="#" class="btn btn-primary">Linkedin</a>
                 <a href="#" class="btn btn-primary">Twitter</a>
+                <a href="#" class="btn btn-primary">Instagram</a>
             </div>
         </div>
     </div>
@@ -241,8 +216,8 @@
             </div>
             <div class="col-md-4">
                 <h5>Contact Us</h5>
-                <p>Email: support@onlinestore.com</p>
-                <p>Phone: +1 (123) 456-7890</p>
+                <p>Email: aasifmohd1385@gmail.com</p>
+                <p>Phone: +91 (875) 530-1385</p>
             </div>
         </div>
 
